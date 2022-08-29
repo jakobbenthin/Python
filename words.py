@@ -1,0 +1,1 @@
+words = ['syster', 'rörmokare', 'gammelfarfar', 'djur', 'ekorre', 'hamster', 'hund', 'boll', 'ring', 'skattkista', 'silver', 'sorg', 'glädje', 'hat', 'kärlek']

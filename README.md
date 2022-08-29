@@ -2,11 +2,12 @@
 
 learning python and git
 
+git config --global user.email "jakob.benthin@gmail.com"
 git clone SSH
 git status
 git add .
 git commit -m "Added new files" -m "Added files from man laptop"
-
+git push
 
 
 ## URL

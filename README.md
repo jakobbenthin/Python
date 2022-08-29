@@ -2,7 +2,7 @@
 
 learning python and git
 
-git config --global user.email "jakob.benthin@gmail.com"
+git config --global user.email "e-post"
 git clone SSH
 git status
 git add .

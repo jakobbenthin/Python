@@ -140,6 +140,33 @@ def hangman_game():
     alphabet = set(string.ascii_uppercase)
     used_letters = set()
 
+    while len(word_letters) > 0:
+        print('You have used these letters: \n', ' '.join(used_letters))
+        
+        #överkurs,,, show word and guess
+        word_list = [letter if letter in used_letters else '-' for letter in word]
+        print('Current word: \n', ' '.join(word_list))
+
+        user_letter = input('Guess a letter:').upper()
+
+        if user_letter in alphabet - user_letter:
+            used_letters.add(user_letter)
+
+            if user_letter in word_letters:
+                word_letters.remove(user_letter)
+
+        elif user_letter in used_letters:
+            print('You have already used this character...')
+
+        else:
+            print('Invalid character...')
+
+
+    # when len(world_letters) == 0
+
+
+
+
 
 
     blanks = []

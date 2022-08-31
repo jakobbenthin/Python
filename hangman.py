@@ -12,12 +12,23 @@ def check_letter(word, input, tmp_word):
     
 
 def cls():
-    os.system('clear')
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def print_wrong(wrong):
     
-    if wrong == 1:
+    if wrong == 0:
+        print('')
+        print('')
+        print('')
+        print('')
+        print('')
+        print('')
+        print('')
+        print('')
+        print('')
+        print('')
+    elif wrong == 1:
         print('')
         print('')
         print('')
@@ -139,8 +150,11 @@ def hangman_game():
     word_letters = set(word) # letters in word
     alphabet = set(string.ascii_uppercase)
     used_letters = set()
+    
 
     while len(word_letters) > 0:
+        cls()
+        print_wrong(x)
         print('You have used these letters: \n', ' '.join(used_letters))
         
         #överkurs,,, show word and guess
@@ -156,19 +170,18 @@ def hangman_game():
                 word_letters.remove(user_letter)
             else:
                 x += 1
-                if x < 10:
+                if x == 10:
+                    cls()
                     print_wrong(x)
-                else:
                     print(f'You died, right answer: {word}')
                     return False
-
         elif user_letter in used_letters:
             print('You have already used this character...')
 
         else:
             print('Invalid character...')
 
-
+    print(f'Correct word!! \n{word}')
     return True
 
     # when len(world_letters) == 0

@@ -1,1 +1,1 @@
-words = ['banan', 'boll', 'hockey', 'snabb']
+words = ['BANAN', 'BOLL', 'HOCKEY', 'SNABB']

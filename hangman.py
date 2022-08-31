@@ -16,7 +16,7 @@ def cls():
 
 
 def print_wrong(wrong):
-    cls()
+    
     if wrong == 1:
         print('')
         print('')
@@ -134,8 +134,8 @@ def get_random_word(words):
 
 
 def hangman_game():
+    x = 0
     word = get_random_word(words)
-
     word_letters = set(word) # letters in word
     alphabet = set(string.ascii_uppercase)
     used_letters = set()
@@ -149,11 +149,18 @@ def hangman_game():
 
         user_letter = input('Guess a letter:').upper()
 
-        if user_letter in alphabet - user_letter:
+        if user_letter in alphabet - used_letters:
             used_letters.add(user_letter)
 
             if user_letter in word_letters:
                 word_letters.remove(user_letter)
+            else:
+                x += 1
+                if x < 10:
+                    print_wrong(x)
+                else:
+                    print(f'You died, right answer: {word}')
+                    return False
 
         elif user_letter in used_letters:
             print('You have already used this character...')
@@ -162,6 +169,8 @@ def hangman_game():
             print('Invalid character...')
 
 
+    return True
+
     # when len(world_letters) == 0
 
 
@@ -169,11 +178,11 @@ def hangman_game():
 
 
 
-    blanks = []
-    for i in  range(0, len(word)):
-        blanks.append('-')
-    print("\n\n\n\n\n\n\n")
-    print(*blanks)
+    #blanks = []
+    #for i in  range(0, len(word)):
+    #    blanks.append('-')
+    #print("\n\n\n\n\n\n\n")
+    #print(*blanks)
     
 
 
@@ -190,5 +199,8 @@ tmp_word = ''
 #check_letter(word, input(), tmp_word)
 
 #print_wrong(8)
-hangman_game()
+if hangman_game() == True:
+    print('You won!')
+else:
+    print('You lose...')
  

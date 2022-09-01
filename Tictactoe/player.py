@@ -7,10 +7,9 @@ class Player:
         # letter is x or o
         self.letter = letter
 
-    # next move
     def get_move(self, game):
         pass
-
+ 
 class RandomComputerPlayer(Player):
     def __init__(self, letter):
         super().__init__(letter)
@@ -29,7 +28,7 @@ class HumanPlayer(Player):
         valid_squeare = False
         val = None
         while not valid_squeare:
-            square = input(self.letter + '\'s turn. Input move 0-9:')
+            square = input(self.letter + '\'s turn. Input move 0-8:')
 
             try:
                 val = int(square)

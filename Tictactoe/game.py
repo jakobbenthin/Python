@@ -1,7 +1,8 @@
 import math
 import time
 
-from player import HumanPlayer, RandomComputerPlayer
+
+from player import HumanPlayer, RandomComputerPlayer, GeniusComputerPlayer
 
 class TicTacToe:
     def __init__(self):
@@ -84,6 +85,7 @@ def play(game, x_palyer, o_player, print_game=True):
     # dont have to worry about a winner, we return winner when loop brakes
 
     while game.empty_squares():
+        
         # get the move form the appropriate player
         if letter == 'O':
             square = o_player.get_move(game)
@@ -108,8 +110,24 @@ def play(game, x_palyer, o_player, print_game=True):
         print('It\'s a tie...')
 
 if __name__ == '__main__':
-    x_player = HumanPlayer('X')
-    #o_player = RandomComputerPlayer('O')
-    o_player = HumanPlayer('O')
-    t = TicTacToe()
-    play(t, x_player, o_player, print_game=True)
+    x_wins = 0
+    o_wins = 0
+    ties = 0
+
+    for _ in range(20):
+        #x_player = HumanPlayer('X')
+        #o_player = RandomComputerPlayer('O')
+        x_player = RandomComputerPlayer('X')
+        o_player = GeniusComputerPlayer('O')
+        #o_player = HumanPlayer('O')
+        t = TicTacToe()
+        result = play(t, x_player, o_player, print_game=False)
+        if result == 'X':
+            x_wins +=11
+        elif result == 'O':
+            o_wins += 1
+        else:
+            ties += 1
+        print(_)
+
+    print(f'After 20 iterations, X: {x_wins}, O: {o_wins}, Ties: {ties}')

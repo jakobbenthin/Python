@@ -118,8 +118,51 @@ class Board:
         # return a stirng that shows the board to the player
 
         # create a array that represent what the user would see
+        visible_board = [[None for _ in range(self.dim_size)] for _ in range(self.dim_size)]
+        for row in range(self.dim_size):
+            for col in range(self.dim_size):
+                if (row,col) in self.dug:
+                    visible_board[row][col] = str(self.board[row][col])
+                else:
+                    visible_board[row][col] = ' '
+        
+         # put this together in a string
+        string_rep = ''
+        # get max column widths for printing
+        widths = []
+        for idx in range(self.dim_size):
+            columns = map(lambda x: x[idx], visible_board)
+            widths.append(
+                len(
+                    max(columns, key = len)
+                )
+            )
 
-        pass
+        # print the csv strings
+        indices = [i for i in range(self.dim_size)]
+        indices_row = '   '
+        cells = []
+        for idx, col in enumerate(indices):
+            format = '%-' + str(widths[idx]) + "s"
+            cells.append(format % (col))
+        indices_row += '  '.join(cells)
+        indices_row += '  \n'
+        
+        for i in range(len(visible_board)):
+            row = visible_board[i]
+            string_rep += f'{i} |'
+            cells = []
+            for idx, col in enumerate(row):
+                format = '%-' + str(widths[idx]) + "s"
+                cells.append(format % (col))
+            string_rep += ' |'.join(cells)
+            string_rep += ' |\n'
+
+        str_len = int(len(string_rep) / self.dim_size)
+        string_rep = indices_row + '-'*str_len + '\n' + string_rep + '-'*str_len
+
+        return string_rep
+
 
 
 #play the game
@@ -131,4 +174,7 @@ def play(dim_size=10, num_bombs=10):
     # step 3a - if location is a bomb, show "game over" message
     # step 3b - if location is not a bomb, dig recursively intil each square is at leas next to a bomb 
     # step 4 - repeat steps 2 and 3a/b until there are no more places to dig -> victory
-    pass
+    
+    while len(board.dug) < board.dim_size ** 2 - num_bombs:
+        print(board)
+        user_input = re.split(',(\\s)*', input("Where would you like to dig? Input as row,col: "))

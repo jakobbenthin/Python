@@ -1,4 +1,4 @@
-from asyncio.proactor_events import _ProactorSocketTransport
+#from asyncio.proactor_events import _ProactorSocketTransport
 import random
 
 # create a board object tp represent the minesweeper game
